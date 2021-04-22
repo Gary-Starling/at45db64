@@ -5,21 +5,9 @@
 
 SPI_HandleTypeDef hspi1;
 
-extern I2S_HandleTypeDef hi2s3; 
 
 extern void Error_Handler(void);
-/*Audio externs*/
-extern FIL WavFile;
-extern __IO BUFFER_StateTypeDef buffer_offset;
-extern uint8_t Audio_Buffer[AUDIO_BUFFER_SIZE];
-extern osMessageQId LedEvent; 
 
-//счетчик байт для передачи звука  register 
-int RemSize = 0;  
-
-extern bool VoiseInProgress_f;
-
-uint32_t DataLength; //Длина проигрываемого файла //Сделать внутреннюю
 
 uint32_t memory_size = ALL_SIZE;
 uint16_t page_write = WRITE_ADT_ST;   //с какой страницы начинаем запись
@@ -27,14 +15,6 @@ uint16_t page_write = WRITE_ADT_ST;   //с какой страницы начи�
 //Её тоже надобно хранить
 //в целях теста по записи пары файлов,объявим её пока так
 
-//переменная для подсчета размера последней транзакции звука по ДМА
-uint16_t LastBuffSize = 0;
-
-/*флаг, конца/ошибки/сброса вызова. Нужен для аварийного выхода из задач звонка*/
-/*from mail.c*/
-//extern bool CallIsError;
-
-InfoFile_str Info_flash[MAX_FILES];
 
 void SPI2_Init(void)
 {
@@ -73,6 +53,8 @@ void SPI_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(CS_PORT, &GPIO_InitStruct);
+  /* Не забудь добавить свои пины mosi, miso,
+  и подать тактирование */
   
 }
 

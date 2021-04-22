@@ -1,4 +1,4 @@
-
+/* РћР±СЉСЏРІРё СЃРІРѕР№ SPI Рё Р·Р°РёРЅРёС†РёР°Р»РёР·РёСЂСѓР№ РµРіРѕ */
 
 #define CS_PIN          GPIO_PIN_3
 #define CS_PORT         GPIOC
@@ -18,14 +18,16 @@
 #define ERR     0
 #define OK      1
 
+/*
 typedef struct 
 {
   char name[32];  
   uint32_t adr;  //4   
   uint32_t size; //4
 }InfoFile_str;
+*/
 
-#define MAX_FILES  100 //Количество треков и инфы о них
+//#define MAX_FILES  100 //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
 
 uint8_t ad45test(void);
 uint8_t at45_reset(void);
